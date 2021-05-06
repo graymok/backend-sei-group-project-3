@@ -13,7 +13,7 @@ try {
         password:req.body.password
     })
     console.log('user created');
-    const encryptId = jwt.sign({userId:user.id}, process.env.JWT_SECRET)
+    const encryptId = jwt.sign({userId:newUser.id}, process.env.JWT_SECRET)
     res.json({newUser,userId:encryptId})
 } catch (error) {
     console.log(error)
@@ -61,5 +61,8 @@ userController.verify = async(req,res) => {
         res.status(400).json({error: 'could not verify user'})
     }
 }
+
+// get profile
+
 
 module.exports = userController
