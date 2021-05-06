@@ -13,7 +13,7 @@ try {
         password:req.body.password
     })
     console.log('user created');
-    const encryptId = jwt.sign({userId:user.id}, process.env.JWT_SECRET)
+    const encryptId = jwt.sign({userId:newUser.id}, process.env.JWT_SECRET)
     res.json({newUser,userId:encryptId})
 } catch (error) {
     console.log(error)

@@ -20,7 +20,7 @@ ERD
 1. The My Orders page displays a list of my completed orders, using the date of the order as a clickable link. When I click on a single order, I see the Single Order page, which shows its products (name and price), the total price of the order, and the credit card & address.
 
 ## Routes
-| Request   | Route URL  | Description   | Takes in | Returns
+| Request   | Route URL  | Description   | Returns |
 | --------- | --------- | ------------- | --------- |
 |   POST    | /user    | user signup   | new user
 |   POST    | /user/login | user login | user
