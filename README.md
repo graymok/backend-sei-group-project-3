@@ -20,21 +20,22 @@ ERD
 1. The My Orders page displays a list of my completed orders, using the date of the order as a clickable link. When I click on a single order, I see the Single Order page, which shows its products (name and price), the total price of the order, and the credit card & address.
 
 ## Routes
-| Request   | Route URL  | Description   | Returns   |
+| Request   | Route URL  | Description   | Takes in | Returns
 | --------- | --------- | ------------- | --------- |
-|   POST    | /users    | user signup   | new user
-|   POST    | /users/login | user login | user
-|   GET     | /users/verify | verify user | verified user or 'user not found' message
-|   GET     | /users/profile | user profile | user
-|   PUT     | /users/profile | user update | updated user
-|   GET     | /users/cart | get user's cart items | user's cart items
-|   POST     | /users/cart | add item to cart | added item
-|   DELETE     | /users/cart/:id | remove item from cart | success message
+|   POST    | /user    | user signup   | new user
+|   POST    | /user/login | user login | user
+|   GET     | /user/verify | verify user | verified user or 'user not found' message
+|   GET     | /user/profile | user profile | user
+|   PUT     | /user/profile | user update | updated user
+|   GET     | /user/cart | get user's cart items | user's cart items
+|   POST     | /user/cart | add item to cart | added item
+|   DELETE     | /user/cart/:id | remove item from cart | success message
 |   GET     | /products | get all products | all products
 |   GET     | /products/:id | get one product | one product
 |   POST     | /orders | make new order | new order
 |   GET     | /orders | user's orders | user's orders
 |   GET     | /orders/:id | one order | one order
+|   POST     | /orders/:id | update order | updated order
     
 ## MVP Goals
 1. [ ] User signup, login, auth
