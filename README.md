@@ -8,7 +8,7 @@
 
 ERD
 
-![wireframe](https://i.imgur.com/YLdwIZK.png)
+![wireframe](https://i.imgur.com/HBQ4K3O.png)
 
 ## User Stories
 1. When I first visit the site, I'm on a home page that just has a simple welcome message.
@@ -37,17 +37,17 @@ ERD
 |   GET     | /orders/:id | one order | one order
     
 ## MVP Goals
-1. [] User signup, login, auth
-1. [] Able to view all products
-1. [] Able to view single product details
-1. [] Able to add/remove items to/from cart and view current cart items
-1. [] Able to submit an order of products and view all past orders
-1. [] Able to view single order details
+1. [ ] User signup, login, auth
+1. [ ] Able to view all products
+1. [ ] Able to view single product details
+1. [ ] Able to add/remove items to/from cart and view current cart items
+1. [ ] Able to submit an order of products and view all past orders
+1. [ ] Able to view single order details
 
 ## Stretch Goals
-1. [] Each Product has a quantity in the database. When a user buys a product, its quantity is reduced. Products with a quantity of 0 are not displayed in the All Products page. (A user can still only buy 1 of a product at a time.)
-1. [] The app has one (or more) designated admin users. When an admin user logs in, they do not see the All Products, My Cart, and My Orders links. Instead, they see Manage Products and Orders To Fill.
-1. [] Manage Products MVP: The admin user sees a list of all products, and next to each one is an input to adjust the quantity of that product.
-1. Orders To Fill MVP: The admin user sees a list of all orders (from all users), which initially are in a Pending state. For each order, the admin user can click a button to convert it from Pending to Shipped. Shipped orders don't have a button, just a text or icon indicator that they've been shipped.
-1. [] Manage Products stretch: The admin user can add new products, and edit or delete existing ones.
+1. [ ] Each Product has a quantity in the database. When a user buys a product, its quantity is reduced. Products with a quantity of 0 are not displayed in the All Products page. (A user can still only buy 1 of a product at a time.)
+1. [ ] The app has one (or more) designated admin users. When an admin user logs in, they do not see the All Products, My Cart, and My Orders links. Instead, they see Manage Products and Orders To Fill.
+1. [ ] Manage Products MVP: The admin user sees a list of all products, and next to each one is an input to adjust the quantity of that product.
+1. [ ] Orders To Fill MVP: The admin user sees a list of all orders (from all users), which initially are in a Pending state. For each order, the admin user can click a button to convert it from Pending to Shipped. Shipped orders don't have a button, just a text or icon indicator that they've been shipped.
+1. [ ] Manage Products stretch: The admin user can add new products, and edit or delete existing ones.
 
