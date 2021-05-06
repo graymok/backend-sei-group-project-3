@@ -34,11 +34,11 @@ userController.login = async (req,res) => {
         {
             res.json({user,userId:encryptId,message:'login successful'})
         }else{
-            res.status(409).json({error:error.message})}
+            res.status(409).json({error: 'incorrect password'})}
         
     } catch (error) {
         console.log(error)
-        res.status(400).json({error:error.message})
+        res.status(400).json({error: 'could not login user'})
     }
 }
 
@@ -52,13 +52,13 @@ userController.verify = async(req,res) => {
                     process.env.JWT_SECRET)
                 res.json({
                     user,userId:encryptId,
-                    message:'login successful'})
-            }else{res.status(401).json({error:error.message})}
+                    message:'user verified'})
+            }else{res.status(401).json({error: 'no user to verify'})}
             // if(check-item){yes-dothis}else{no-do this}  check/do
              // if(check-item){yes-dothis}else if(check 2){yes-do this} else{no-do this}  check/do
     } catch (error) {
         console.log(error)
-        res.status(400).json({error:error.message})
+        res.status(400).json({error: 'could not verify user'})
     }
 }
 
