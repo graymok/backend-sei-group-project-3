@@ -6,6 +6,12 @@ const jwt = require('jsonwebtoken');
 // helper obj
 const UserAuth = {};
 
+/* Call in any controller file by using:
+        const UserAuth = require('../middleware/UserAuth');
+    at the top of the file. Then call with:
+        await UserAuth.authorizeUser(req.headers.authorization)
+    to get back true (user exists) or false (user does not exist)
+*/
 UserAuth.authorizeUser = async (authId) =>
 {
     try {
