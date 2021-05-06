@@ -16,7 +16,7 @@ const cartRoutes = require('./routes/cartRoutes');
 app.use('/user', userRoutes);
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
-app.use('/carts',cartRoutes);
+app.use('/cart',cartRoutes);
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
