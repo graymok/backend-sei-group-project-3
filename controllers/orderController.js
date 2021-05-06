@@ -51,7 +51,7 @@ orderController.getAll = async (req, res) =>
         if (user)
         {
             // grab users orders with products
-            const orders = await user.getOrders({ include: { model: models.product }});
+            const orders = await user.getOrders({ include: { model: models.cart_item }});
             // check if orders exist
             if (orders)
             {
@@ -72,6 +72,7 @@ orderController.getAll = async (req, res) =>
             res.status(401).json({ error: 'unauthorized to get orders' });
         }
     } catch (error) {
+        console.log(error.message);
         // status 400 - bad request
         res.status(400).json({ error: 'could not get orders' })
     }
@@ -87,7 +88,7 @@ orderController.getOne = async (req, res) =>
         if (user)
         {
             // grab users order with products
-            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.product }});
+            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.cart_item }});
             // check if order exists
             if (order)
             {
@@ -123,14 +124,14 @@ orderController.update = async (req, res) =>
         if (user)
         {
             // grab users order with products
-            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.product }});
+            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.cart_item }});
             // check if order exists
-            if (order)
+            if (order.length > 0)
             {
                 // update order
-                order.update(req.body);
+                order[0].update(req.body);
                 // return order
-                res.json({ message: 'order found', order });
+                res.json({ message: 'order found', order: order[0] });
             }
             // no order
             else
@@ -146,6 +147,7 @@ orderController.update = async (req, res) =>
             res.status(401).json({ error: 'unauthorized to update order' });
         }
     } catch (error) {
+        console.log(error.message);
         // status 400 - bad request
         res.status(400).json({ error: 'could not update order' })
     }
