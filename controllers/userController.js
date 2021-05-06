@@ -62,4 +62,7 @@ userController.verify = async(req,res) => {
     }
 }
 
+// get profile
+
+
 module.exports = userController

@@ -20,22 +20,22 @@ ERD
 1. The My Orders page displays a list of my completed orders, using the date of the order as a clickable link. When I click on a single order, I see the Single Order page, which shows its products (name and price), the total price of the order, and the credit card & address.
 
 ## Routes
-| Request   | Route URL  | Description   | Returns |
-| --------- | --------- | ------------- | --------- |
-|   POST    | /user    | user signup   | new user
-|   POST    | /user/login | user login | user
-|   GET     | /user/verify | verify user | verified user or 'user not found' message
-|   GET     | /user/profile | user profile | user
-|   PUT     | /user/profile | user update | updated user
-|   GET     | /user/cart | get user's cart items | user's cart items
-|   POST     | /user/cart | add item to cart | added item
-|   DELETE     | /user/cart/:id | remove item from cart | success message
-|   GET     | /products | get all products | all products
-|   GET     | /products/:id | get one product | one product
-|   POST     | /orders | make new order | new order
-|   GET     | /orders | user's orders | user's orders
-|   GET     | /orders/:id | one order | one order
-|   POST     | /orders/:id | update order | updated order
+| Request   | Route URL  | Description  | Takes In  | Returns
+| --------- | --------- | ------------- | ---------- | --------- |
+|   POST    | /user    | user signup   | name, email, password | new user, encrypted id
+|   POST    | /user/login | user login | email, password | user, encrypted id
+|   GET     | /user/verify | verify user | auth id | user, encrypted id
+|   GET     | /user/profile | user profile | auth id | user
+|   PUT     | /user/profile | user update | name, email | updated user
+|   GET     | /user/cart | get user's cart items | | user's cart items
+|   POST     | /user/cart | add item to cart | | added item
+|   DELETE     | /user/cart/:id | remove item from cart | | success message
+|   GET     | /products | get all products | auth id | all products
+|   GET     | /products/:id | get one product | auth id, project id | one product
+|   POST     | /orders | make new order | | new order
+|   GET     | /orders | user's orders | auth id | user's orders
+|   GET     | /orders/:id | one order | auth id, order id | one order
+|   POST     | /orders/:id | update order | auth id, order id | updated order
     
 ## MVP Goals
 1. [ ] User signup, login, auth
