@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const bcrypt = require('bcrypt');
+const { options } = require('../routes/userRoutes');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -14,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       models.user.hasMany(models.cart_item)
       models.user.hasMany(models.order)
     }
+    verifyPassword(input) {
+      return bcrypt.compareSync(input, this.password)
+    }
+
   };
   user.init({
     name: DataTypes.STRING,
@@ -23,5 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
   });
+  user.addHook('beforeCreate', (user,options)=>{
+    const hashPassword = bcrypt.hashSync(user.password,10)
+    user.password=hashPassword
+  })
   return user;
 };
