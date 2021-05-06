@@ -27,9 +27,9 @@ ERD
 |   GET     | /user/verify | verify user | auth id | user, encrypted id
 |   GET     | /user/profile | user profile | auth id | user
 |   PUT     | /user/profile | user update | auth id, name, email | updated user
-|   GET     | /user/cart | get user's cart items | auth id | user's cart items
-|   POST     | /user/cart | add item to cart | auth id, product id | added item
-|   DELETE     | /user/cart/:id | remove item from cart | auth id, product id | success message
+|   GET     | /cart | get user's cart items | auth id | user's cart items
+|   POST     | /cart | add item to cart | auth id, product id | added item
+|   DELETE     | /cart/:productId | remove item from cart | auth id, product id | success message
 |   GET     | /products | get all products | auth id | all products
 |   GET     | /products/:id | get one product | auth id, project id | one product
 |   POST     | /orders | make new order | auth id, address, card | new order
