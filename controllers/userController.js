@@ -63,6 +63,68 @@ userController.verify = async(req,res) => {
 }
 
 // get profile
+userController.profile = async (req, res) =>
+{
+    try {
+        // grab authorized user
+        const user = await UserAuth.authorizeUser(req.headers.authorization);
+        // check if user exists
+        if (user)
+        {
+            // encrypt id
+            const encryptedId = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+            // return user with encrypted id
+            res.json({ message: 'user profile found', user, userId: encryptedId })
+        }
+        // no user
+        else
+        {
+            // status 404 - could not be found
+            res.status(404).json({ error: 'no profile found'});
+        }
+    } catch (error) {
+        // status 400 - bad request
+        res.status(400).json({ error: 'failed to  load profile'});
+    }
+}
 
+// update profile
+userController.update = async (req, res) =>
+{
+    try {
+        // grab authorized user
+        const user = await UserAuth.authorizeUser(req.headers.authorization);
+        // check if user exists
+        if (user)
+        {
+            // check if updated email matches any current users emails
+            const users = await models.user.findAll();
+            users.forEach(u =>
+            {
+                // check if emails match and is not current email
+                if (u.email === req.body.email && req.body.email !== user.email)
+                {
+                    // status 409 - conflict
+                    res.status(409).json({ error: 'duplicate emails' });
+                }
+            })
+            // update user
+            user.update(req.body);
+            // encrypt id
+            const encryptedId = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+            // return user with encrypted id
+            res.json({ message: 'user profile updated', user, userId: encryptedId })
+        }
+        // no user
+        else
+        {
+            // status 404 - could not be found
+            res.status(404).json({ error: 'no profile found'});
+        }
+    } catch (error) {
+        // status 400 - bad request
+        res.status(400).json({ error: 'failed to  update profile'});
+    }
+}
 
 module.exports = userController
