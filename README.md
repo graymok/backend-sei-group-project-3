@@ -29,7 +29,7 @@ ERD
 |   PUT     | /user/profile | user update | auth id, name, email | updated user
 |   GET     | /cart | get user's cart items | auth id | user's cart items
 |   POST     | /cart | add item to cart | auth id, product id | added item
-|   DELETE     | /cart/:productId | remove item from cart | auth id, product id | success message
+|   DELETE     | /cart | remove item from cart | auth id, cart item created at | success message
 |   GET     | /products | get all products | auth id | all products
 |   GET     | /products/:id | get one product | auth id, project id | one product
 |   POST     | /orders | make new order | auth id, address, card | new order
