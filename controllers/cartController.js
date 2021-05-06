@@ -1,5 +1,7 @@
+const models = require('../models');
 const cart = require('../models/cart_item')
 
+const UserAuth = require('../middleware/UserAuth');
 
 const cartController = {}
 
@@ -9,7 +11,7 @@ try {
 
     if(user)
     {
-        const cart = await user.getCart_items()
+        const cart = await user.getCart_items({ include: { model: models.product }})
 
         if(cart)
         {
@@ -27,6 +29,7 @@ try {
         res.status(401).json({error: 'unauthorized to get cart' })
     }
 } catch (error) {
+    console.log(error.message);
     res.status(400).json({error:'could not find cart'})
 }
 
@@ -52,6 +55,7 @@ try {
 
      
 } catch (error) {
+    console.log(error.message);
     res.status(400).json({error:'can not add item'})
 }
 }
@@ -62,7 +66,7 @@ try {
     
 if(user){
     const product = await models.cart_item.findOne({
-        where:{userId:user.id, productId:req.params.productId}
+        where:{ createdAt: req.body.createdAt }
     })
     if(product){
         const deleteItem = await product.destroy()
