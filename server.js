@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 
@@ -7,9 +8,11 @@ const routesReport = require('rowdy-logger').begin(app)
 app.use(express.json())
 app.use(require('cors')())
 
+const userRoutes = require('./routes/userRoutes')
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
+app.use('/user', userRoutes);
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 
