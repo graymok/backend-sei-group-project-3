@@ -26,7 +26,7 @@ ERD
 |   POST    | /user/login | user login | email, password | user, encrypted id
 |   GET     | /user/verify | verify user | auth id | user, encrypted id
 |   GET     | /user/profile | user profile | auth id | user
-|   PUT     | /user/profile | user update | name, email | updated user
+|   PUT     | /user/profile | user update | auth id, name, email | updated user
 |   GET     | /user/cart | get user's cart items | | user's cart items
 |   POST     | /user/cart | add item to cart | | added item
 |   DELETE     | /user/cart/:id | remove item from cart | | success message
