@@ -48,9 +48,8 @@ Sahara is the premier e-commerce experience for finding the latest in computer a
 |   GET     | /products | get all products | auth id | all products
 |   GET     | /products/:id | get one product | auth id, project id | one product
 |   POST     | /orders | make new order | auth id, cart, total, address (street, city, zip, state), card | new order
-|   GET     | /orders | user's orders | auth id | user's orders
-|   GET     | /orders/:id | one order | auth id, order id | one order
-|   POST     | /orders/:id | update order | auth id, order id | updated order
+|   GET     | /orders | user's orders | auth id | user's orders with cart items and products
+|   GET     | /orders/:id | one order | auth id, order id | one order with cart items and products
     
 ## MVP Goals
 1. [x] User signup, login, auth

@@ -21,14 +21,16 @@ orderController.create = async (req, res) =>
                 total: req.body.total,
                 address: req.body.address,
                 card: req.body.card
-            }, { include: [ { model: models.cart_item }]})
+            })
             // add order to user
             await user.addOrder(order);
             // add each cart item to order
             req.body.cart.forEach(async (item) => {
                 const cartItem = await models.cart_item.findOne({ where: { id: item.id }});
-                order.addCart_item(cartItem);
-                user.removeCart_item(cartItem);
+                // add item to order
+                await order.addCart_item(cartItem);
+                // remove item from user - clear cart
+                await user.removeCart_item(cartItem);
             })
             // reload order to show user
             await order.reload();
@@ -58,7 +60,7 @@ orderController.getAll = async (req, res) =>
         if (user)
         {
             // grab users orders with products
-            const orders = await user.getOrders({ include: { model: models.cart_item }});
+            const orders = await user.getOrders({ include: { model: models.cart_item, include: { model: models.product } }});
             // check if orders exist
             if (orders)
             {
@@ -95,7 +97,7 @@ orderController.getOne = async (req, res) =>
         if (user)
         {
             // grab users order with cart item's products
-            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.cart_item, incldue: { model: models.product } }});
+            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.cart_item, include: { model: models.product } }});
             // check if order exists
             if (order)
             {
@@ -118,45 +120,6 @@ orderController.getOne = async (req, res) =>
     } catch (error) {
         // status 400 - bad request
         res.status(400).json({ error: 'could not get order' })
-    }
-}
-
-// update order
-orderController.update = async (req, res) =>
-{
-    try {
-        // grab user
-        const user = await UserAuth.authorizeUser(req.headers.authorization);
-        // check if user exists
-        if (user)
-        {
-            // grab users order with products
-            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.cart_item }});
-            // check if order exists
-            if (order.length > 0)
-            {
-                // update order
-                order[0].update(req.body);
-                // return order
-                res.json({ message: 'order found', order: order[0] });
-            }
-            // no order
-            else
-            {
-                // status 404 - not found
-                res.status(404).json({ error: 'no order found' });
-            }
-        }
-        // no user
-        else
-        {
-            // status 401 - unauthorized
-            res.status(401).json({ error: 'unauthorized to update order' });
-        }
-    } catch (error) {
-        console.log(error.message);
-        // status 400 - bad request
-        res.status(400).json({ error: 'could not update order' })
     }
 }
 
