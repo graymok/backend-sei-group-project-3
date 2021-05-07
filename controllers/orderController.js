@@ -18,7 +18,7 @@ orderController.create = async (req, res) =>
         {
             // create order
             const order = await models.order.create({
-                total: 0,
+                total: req.body.total,
                 address: req.body.address,
                 card: req.body.card
             })
@@ -27,7 +27,7 @@ orderController.create = async (req, res) =>
             // reload order to show user
             await order.reload();
             // return new order
-            res.json({ message: 'order created', order });
+            res.json({ message: 'order created', order: { id: order.id, total: order.total, card: order.card, address: order.address.split('|')[0], city: order.address.split('|')[1], zip: order.address.split('|')[2], state: order.address.split('|')[3] } });
         }
         // no user
         else
@@ -36,6 +36,7 @@ orderController.create = async (req, res) =>
             res.status(401).json({ error: 'unauthorized to create an order' });
         }
     } catch (error) {
+        console.log(error.message);
         // status 400 - bad request
         res.status(400).json({ error: 'could not create order' });
     }

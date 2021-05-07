@@ -47,7 +47,7 @@ Sahara is the premier e-commerce experience for finding the latest in computer a
 |   DELETE     | /cart | remove item from cart | auth id, cart item created at | success message
 |   GET     | /products | get all products | auth id | all products
 |   GET     | /products/:id | get one product | auth id, project id | one product
-|   POST     | /orders | make new order | auth id, address, card | new order
+|   POST     | /orders | make new order | auth id, total, address, card | new order
 |   GET     | /orders | user's orders | auth id | user's orders
 |   GET     | /orders/:id | one order | auth id, order id | one order
 |   POST     | /orders/:id | update order | auth id, order id | updated order
