@@ -53,7 +53,6 @@ try {
         res.status(404).json({error:'can not find product'})
     }
 
-     
 } catch (error) {
     console.log(error.message);
     res.status(400).json({error:'can not add item'})
