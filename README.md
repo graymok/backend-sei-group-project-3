@@ -1,14 +1,29 @@
-# backend-sei-group-project-3
-### Deployed Link
+# backend-sei-group-project-3 aka Sahara
+## Deployed Link
 **TBD**
 
 ## Overview
+Sahara is the premier e-commerce experience for finding the latest in computer accessories.
+
 
 ## Wireframes
+#### Homepage
+![homepage](./wireframes/wireframe-1.png)
+#### Login / Signup
+![login](./wireframes/wireframe-2.png)
+#### All Products
+![products](./wireframes/wireframe-3.png)
+#### Single Product
+![single](./wireframes/wireframe-4.png)
+#### Shopping Cart
+![cart](./wireframes/wireframe-5.png)
+#### Submit Payment
+![payment](./wireframes/wireframe-6.png)
+#### All Orders
+![orders](./wireframes/wireframe-7.png)
 
-ERD
-
-![wireframe](https://i.imgur.com/HBQ4K3O.png)
+## Entity Relationship Diagram (ERD)
+![erd](https://i.imgur.com/HBQ4K3O.png)
 
 ## User Stories
 1. When I first visit the site, I'm on a home page that just has a simple welcome message.
@@ -38,10 +53,10 @@ ERD
 |   POST     | /orders/:id | update order | auth id, order id | updated order
     
 ## MVP Goals
-1. [ ] User signup, login, auth
-1. [ ] Able to view all products
-1. [ ] Able to view single product details
-1. [ ] Able to add/remove items to/from cart and view current cart items
+1. [x] User signup, login, auth
+1. [x] Able to view all products
+1. [x] Able to view single product details
+1. [x] Able to add/remove items to/from cart and view current cart items
 1. [ ] Able to submit an order of products and view all past orders
 1. [ ] Able to view single order details
 
