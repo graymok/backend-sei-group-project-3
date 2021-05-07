@@ -28,6 +28,7 @@ orderController.create = async (req, res) =>
             req.body.cart.forEach(async (item) => {
                 const cartItem = await models.cart_item.findOne({ where: { id: item.id }});
                 order.addCart_item(cartItem);
+                user.removeCart_item(cartItem);
             })
             // reload order to show user
             await order.reload();
