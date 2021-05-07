@@ -27,8 +27,8 @@ orderController.create = async (req, res) =>
             // add each cart item to order
             req.body.cart.forEach(async (item) => {
                 const cartItem = await models.cart_item.findOne({ where: { id: item.id }});
-                order.addCart_item(cartItem);
-                user.removeCart_item(cartItem);
+                await order.addCart_item(cartItem);
+                await user.removeCart_item(cartItem);
             })
             // reload order to show user
             await order.reload();
@@ -58,7 +58,7 @@ orderController.getAll = async (req, res) =>
         if (user)
         {
             // grab users orders with products
-            const orders = await user.getOrders({ include: { model: models.cart_item }});
+            const orders = await user.getOrders({ include: { model: models.cart_item, include: { model: models.product } }});
             // check if orders exist
             if (orders)
             {
@@ -95,7 +95,7 @@ orderController.getOne = async (req, res) =>
         if (user)
         {
             // grab users order with cart item's products
-            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.cart_item, incldue: { model: models.product } }});
+            const order = await user.getOrders({ where: { id: req.params.id }, include: { model: models.cart_item, include: { model: models.product } }});
             // check if order exists
             if (order)
             {
